@@ -6,6 +6,7 @@ import (
 	"flag"
 	"fmt"
 	"log"
+	"movies/models"
 	"net/http"
 	"os"
 	"time"
@@ -32,6 +33,7 @@ type AppStatus struct {
 type application struct {
 	config config
 	logger *log.Logger
+	models models.Models
 }
 
 func main() {
@@ -55,6 +57,7 @@ func main() {
 	app := &application{
 		config: cfg,
 		logger: logger,
+		models: models.NewModels(db),
 	}
 
 	srv := &http.Server{
